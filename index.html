@@ -74,6 +74,7 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
+    /* Fixed Header */
     header {
       height: 60px;
       background: var(--header-bg);
@@ -165,6 +166,7 @@
       color: var(--bg);
     }
 
+    /* Main Viewport Container */
     main {
       flex: 1;
       display: flex;
@@ -192,6 +194,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Home Layout */
     .home-wrapper {
       display: flex;
       flex-direction: column;
@@ -211,6 +214,7 @@
       width: 100%;
     }
 
+    /* Left Photo Column */
     .photo-column {
       display: flex;
       flex-direction: column;
@@ -276,6 +280,7 @@
       color: var(--text);
     }
 
+    /* Right Hero Content */
     .hero-content {
       display: flex;
       flex-direction: column;
@@ -305,6 +310,7 @@
       font-weight: 500;
     }
 
+    /* Social Badges Row */
     .social-row {
       display: flex;
       gap: 0.8rem;
@@ -337,6 +343,7 @@
       stroke: currentColor;
     }
 
+    /* PPF Timeline Cards */
     .home-timeline-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -389,6 +396,7 @@
       line-height: 1.4;
     }
 
+    /* Dedicated Stage View */
     .stage-fullscreen-screen {
       background: var(--detail-bg);
       border: 1px solid var(--border);
@@ -525,6 +533,7 @@
       line-height: 1.45;
     }
 
+    /* Generic Grid Views */
     .section-title {
       font-size: 1.8rem;
       font-weight: 800;
@@ -566,6 +575,7 @@
       line-height: 1.5;
     }
 
+    /* Contact View */
     .contact-container {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -641,20 +651,124 @@
       z-index: 100;
     }
 
-    @media (max-width: 950px) {
-      .hero-layout,
-      .home-timeline-row,
-      .stage-grid-layout,
-      .stage-cards-triad,
-      .contact-container {
+    /* RESPONSIVE DESIGN: Optimized for Tablets & Mobile Phones */
+    @media (max-width: 900px) {
+      html, body {
+        height: auto;
+        min-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+
+      header {
+        height: auto;
+        padding: 0.75rem 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding: 4px 0 6px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      nav::-webkit-scrollbar {
+        display: none;
+      }
+
+      nav button {
+        flex-shrink: 0;
+        font-size: 0.72rem;
+        padding: 5px 12px;
+      }
+
+      main {
+        padding: 1.2rem 1.2rem 3rem;
+        height: auto;
+        min-height: calc(100vh - 140px);
+        align-items: flex-start;
+      }
+
+      .home-wrapper {
+        gap: 1.6rem;
+      }
+
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+      }
+
+      .photo-outer-border {
+        max-width: 240px;
+      }
+
+      .track-block-row {
+        max-width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-content {
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      h1.hero-title {
+        font-size: 2.3rem;
+        line-height: 1.1;
+      }
+
+      .hero-role {
+        font-size: 1rem;
+      }
+
+      .social-row {
+        justify-content: center;
+      }
+
+      .home-timeline-row {
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+      }
+
+      .stage-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+
+      .stage-fullscreen-screen {
+        padding: 3.5rem 1.2rem 1.8rem;
+        border-radius: 20px;
+      }
+
+      .stage-rounded-box {
+        height: 250px;
+        max-width: 280px;
+      }
+
+      .stage-cards-triad {
         grid-template-columns: 1fr;
       }
-      .photo-column {
-        max-width: 280px;
-        margin: 0 auto;
+
+      .contact-container {
+        grid-template-columns: 1fr;
+        padding: 1.4rem;
       }
-      main {
-        overflow-y: auto;
+
+      footer {
+        flex-direction: column;
+        gap: 0.3rem;
+        height: auto;
+        padding: 0.8rem;
+        text-align: center;
       }
     }
   </style>
@@ -698,7 +812,7 @@
         <!-- Top Hero Row -->
         <div class="hero-layout">
 
-          <!-- Left Photo Column (Status Badge Removed) -->
+          <!-- Left Photo Column -->
           <div class="photo-column">
             <div class="photo-outer-border">
               <div class="photo-inner-canvas">
@@ -721,7 +835,7 @@
 
           <!-- Right Content Details -->
           <div class="hero-content">
-            <div class="mono-tag">// WELCOME TO MY PORTFOLIO</div>
+            <div class="mono-tag">// HELLO, WORLD</div>
             <h1 class="hero-title">Steven Gennesie<br>B. Laña</h1>
             <div class="hero-role">Bachelor of Science in Information Technology</div>
 
@@ -994,7 +1108,7 @@
     const stageData = {
       past: {
         tag: 'Past',
-        image: 'profile.jpg.',
+        image: 'profile.jpg.jpg',
         heading: 'Where I started',
         subtext: 'Write about your early years: where you grew up and the moment you got curious about computers.',
         c1T: 'Beginnings', c1D: 'First experiences with technology and tactical gaming.',
@@ -1003,7 +1117,7 @@
       },
       present: {
         tag: 'Present',
-        image: 'profile.jpg.',
+        image: 'profile.jpg.jpg',
         heading: 'What I’m doing now',
         subtext: 'Currently training, studying coursework, and building defense labs and web projects every single week.',
         c1T: 'Current Studies', c1D: 'University of the Cordilleras | CITCS 1F Group B.',
@@ -1012,7 +1126,7 @@
       },
       future: {
         tag: 'Future',
-        image: 'profile.jpg.',
+        image: 'profile.jpg.jpg',
         heading: 'Where I’m going',
         subtext: 'The professional cybersecurity defender and high-impact software architect I am actively becoming.',
         c1T: 'Target Role', c1D: 'Cybersecurity Specialist & Enterprise Security Engineer.',
