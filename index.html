@@ -396,7 +396,15 @@
       line-height: 1.4;
     }
 
-    /* Dedicated Stage View */
+    /* Family Section 4-Column Grid */
+    .family-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      width: 100%;
+    }
+
+    /* Dedicated Stage/Detail View (PPF & Family) */
     .stage-fullscreen-screen {
       background: var(--detail-bg);
       border: 1px solid var(--border);
@@ -651,7 +659,7 @@
       z-index: 100;
     }
 
-    /* RESPONSIVE DESIGN: Optimized for Tablets & Mobile Phones */
+    /* Responsive Design */
     @media (max-width: 900px) {
       html, body {
         height: auto;
@@ -734,7 +742,8 @@
         justify-content: center;
       }
 
-      .home-timeline-row {
+      .home-timeline-row,
+      .family-cards-grid {
         grid-template-columns: 1fr;
         gap: 0.9rem;
       }
@@ -889,10 +898,10 @@
       </div>
     </div>
 
-    <!-- DEDICATED STAGE VIEW -->
+    <!-- DEDICATED STAGE VIEW (Shared by PPF & Family details) -->
     <div id="view-stage-detail" class="view-panel">
       <div class="stage-fullscreen-screen">
-        <button class="back-btn" onclick="switchView('home')">&larr; Back</button>
+        <button class="back-btn" id="stageBackBtn" onclick="handleDetailBack()">&larr; Back</button>
 
         <div class="stage-grid-layout">
           <div class="stage-left-box">
@@ -957,24 +966,37 @@
       </div>
     </div>
 
-    <!-- 2. FAMILY VIEW -->
+    <!-- 2. FAMILY VIEW (Interactive Clickable Cards: Mom, Dad, Sister, My Love) -->
     <div id="view-family" class="view-panel">
       <div class="mono-tag">// 02. FOUNDATION</div>
-      <h2 class="section-title">Family & Roots</h2>
-      <div class="grid-cards">
-        <div class="card">
-          <h3>Family Support & Values</h3>
-          <span class="meta">Core Inspiration</span>
-          <p>
-            The continuous pillar of encouragement behind my academic journey, inspiring my dedication, moral compass, and pursuit of excellence.
-          </p>
+      <h2 class="section-title">Family & Loved Ones</h2>
+      <p style="color: var(--muted); font-size: 0.92rem; margin-bottom: 1.5rem;">
+        Click any card below to view their dedicated story and picture:
+      </p>
+
+      <div class="family-cards-grid">
+        <div class="home-timeline-card" onclick="openFamilyDetail('mom')">
+          <span class="badge-pill">Mother</span>
+          <h4>My Mom <span>&rarr;</span></h4>
+          <p>The heart of our home, constant care & unwavering love.</p>
         </div>
-        <div class="card">
-          <h3>Work Ethic & Principles</h3>
-          <span class="meta">Guiding Anchor</span>
-          <p>
-            Growing up surrounded by discipline and perseverance taught me the importance of resilience, humility, and always striving to do my best.
-          </p>
+
+        <div class="home-timeline-card" onclick="openFamilyDetail('dad')">
+          <span class="badge-pill">Father</span>
+          <h4>My Dad <span>&rarr;</span></h4>
+          <p>Pillar of strength, discipline, and strong guidance.</p>
+        </div>
+
+        <div class="home-timeline-card" onclick="openFamilyDetail('sister')">
+          <span class="badge-pill">Sibling</span>
+          <h4>My Sister <span>&rarr;</span></h4>
+          <p>Growing together, shared laughter, and lifelong bond.</p>
+        </div>
+
+        <div class="home-timeline-card" onclick="openFamilyDetail('love')">
+          <span class="badge-pill">Special Someone</span>
+          <h4>My Love <span>&rarr;</span></h4>
+          <p>My greatest inspiration, comfort, and brightest joy.</p>
         </div>
       </div>
     </div>
@@ -1105,10 +1127,11 @@
   </footer>
 
   <script>
+    // Configuration Object for PPF (Past, Present, Future)
     const stageData = {
       past: {
         tag: 'Past',
-        image: 'profile.jpg.jpg',
+        image: 'profile.jpg.jpg', // Set your past picture here
         heading: 'Where I started',
         subtext: 'Write about your early years: where you grew up and the moment you got curious about computers.',
         c1T: 'Beginnings', c1D: 'First experiences with technology and tactical gaming.',
@@ -1117,7 +1140,7 @@
       },
       present: {
         tag: 'Present',
-        image: 'profile.jpg.jpg',
+        image: 'profile.jpg.jpg', // Set your present picture here
         heading: 'What I’m doing now',
         subtext: 'Currently training, studying coursework, and building defense labs and web projects every single week.',
         c1T: 'Current Studies', c1D: 'University of the Cordilleras | CITCS 1F Group B.',
@@ -1126,7 +1149,7 @@
       },
       future: {
         tag: 'Future',
-        image: 'profile.jpg.jpg',
+        image: 'profile.jpg.jpg', // Set your future picture here
         heading: 'Where I’m going',
         subtext: 'The professional cybersecurity defender and high-impact software architect I am actively becoming.',
         c1T: 'Target Role', c1D: 'Cybersecurity Specialist & Enterprise Security Engineer.',
@@ -1134,6 +1157,48 @@
         c3T: 'Long-term Goal', c3D: 'Securing vital systems and critical digital infrastructure.'
       }
     };
+
+    // Configuration Object for Family (Mom, Dad, Sister, My Love)
+    const familyData = {
+      mom: {
+        tag: 'Mother',
+        image: 'mom.jpg', // Replace with your mom's photo filename
+        heading: 'My Mother',
+        subtext: 'The heart and warmth of our family. Her endless sacrifices, kindness, and continuous prayers keep me grounded and motivated.',
+        c1T: 'Unconditional Love', c1D: 'Always there to support and care for me through every milestone.',
+        c2T: 'Core Life Lessons', c2D: 'Taught me kindness, empathy, and maintaining faith under adversity.',
+        c3T: 'My Inspiration', c3D: 'Striving every day to make her proud of the person I become.'
+      },
+      dad: {
+        tag: 'Father',
+        image: 'dad.jpg', // Replace with your dad's photo filename
+        heading: 'My Father',
+        subtext: 'The pillar of resilience, strength, and work ethic in my life. He showed me the true value of hard work and dedication.',
+        c1T: 'Guiding Example', c1D: 'Instilled in me discipline, accountability, and practical problem-solving.',
+        c2T: 'Endurance', c2D: 'Leading by action and demonstrating perseverance through life’s hurdles.',
+        c3T: 'Lifelong Respect', c3D: 'The benchmark of integrity and responsibility I strive to uphold.'
+      },
+      sister: {
+        tag: 'Sister',
+        image: 'sister.jpg', // Replace with your sister's photo filename
+        heading: 'My Sister',
+        subtext: 'My lifelong companion, confidante, and friend. We share unforgettable memories, endless humor, and support for one another.',
+        c1T: 'Shared Memories', c1D: 'From childhood milestones to navigating adulthood side-by-side.',
+        c2T: 'Constant Support', c2D: 'Always ready with honest advice, shared laughter, and understanding.',
+        c3T: 'Inseparable Bond', c3D: 'A connection built on mutual trust and growing together.'
+      },
+      love: {
+        tag: 'My Love',
+        image: 'love.jpg', // Replace with your special someone's photo filename
+        heading: 'My Love',
+        subtext: 'The brightest part of my days and my greatest source of peace. Her presence inspires me to dream bigger and aim higher every single day.',
+        c1T: 'My Safe Haven', c1D: 'Brings comfort, quiet reassurance, and joy into my busy life.',
+        c2T: 'Shared Dreams', c2D: 'Building goals together and celebrating every little achievement.',
+        c3T: 'Endless Motivation', c3D: 'Pushing me to become the best version of myself in everything I do.'
+      }
+    };
+
+    let detailOrigin = 'home';
 
     function switchView(viewName, buttonElement) {
       document.querySelectorAll('.view-panel').forEach(panel => {
@@ -1158,7 +1223,16 @@
     }
 
     function openStageDetail(stageKey) {
-      const data = stageData[stageKey];
+      detailOrigin = 'home';
+      populateDetailScreen(stageData[stageKey]);
+    }
+
+    function openFamilyDetail(memberKey) {
+      detailOrigin = 'family';
+      populateDetailScreen(familyData[memberKey]);
+    }
+
+    function populateDetailScreen(data) {
       if (!data) return;
 
       switchView('stage-detail');
@@ -1173,6 +1247,10 @@
       document.getElementById('card2Desc').innerText = data.c2D;
       document.getElementById('card3Title').innerText = data.c3T;
       document.getElementById('card3Desc').innerText = data.c3D;
+    }
+
+    function handleDetailBack() {
+      switchView(detailOrigin);
     }
 
     function toggleTheme() {
