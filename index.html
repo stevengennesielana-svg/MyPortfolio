@@ -60,7 +60,6 @@
       overflow: hidden;
     }
 
-    /* Permanent Subtle Background Grid */
     body {
       background-color: var(--bg);
       background-image: 
@@ -75,7 +74,6 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Fixed Centered Header */
     header {
       height: 60px;
       background: var(--header-bg);
@@ -167,7 +165,6 @@
       color: var(--bg);
     }
 
-    /* Main Viewport Container: Centered Alignment */
     main {
       flex: 1;
       display: flex;
@@ -195,19 +192,17 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Centered Home Section Wrapper */
     .home-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1.8rem;
+      gap: 2rem;
       width: 100%;
       max-width: 1180px;
       margin: 0 auto;
     }
 
-    /* Enlarged and Centered Hero Layout (Photo Left, Text Right) */
     .hero-layout {
       display: grid;
       grid-template-columns: 350px 1fr;
@@ -216,7 +211,6 @@
       width: 100%;
     }
 
-    /* Enlarged Photo Column */
     .photo-column {
       display: flex;
       flex-direction: column;
@@ -254,20 +248,6 @@
       filter: none !important;
     }
 
-    .status-badge {
-      position: absolute;
-      bottom: -11px;
-      left: 10px;
-      background: var(--badge-bg);
-      color: var(--badge-text);
-      font-family: 'Fira Code', monospace;
-      font-size: 0.76rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      white-space: nowrap;
-      z-index: 5;
-    }
-
     .track-block-row {
       display: flex;
       gap: 0.6rem;
@@ -296,11 +276,10 @@
       color: var(--text);
     }
 
-    /* Enlarged Hero Content on the Right */
     .hero-content {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 1.1rem;
     }
 
     .mono-tag {
@@ -326,24 +305,17 @@
       font-weight: 500;
     }
 
-    .hero-desc {
-      font-size: 0.98rem;
-      line-height: 1.6;
-      color: var(--muted);
-      max-width: 620px;
-    }
-
     .social-row {
       display: flex;
       gap: 0.8rem;
       flex-wrap: wrap;
-      margin-top: 0.2rem;
+      margin-top: 0.4rem;
     }
 
     .social-badge {
       font-family: 'Fira Code', monospace;
       font-size: 0.78rem;
-      padding: 6px 15px;
+      padding: 7px 16px;
       border: 1px solid var(--border);
       border-radius: 9999px;
       background: var(--bg);
@@ -352,6 +324,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
+      cursor: pointer;
       transition: all 0.2s ease;
     }
 
@@ -364,49 +337,6 @@
       stroke: currentColor;
     }
 
-    .cta-row {
-      display: flex;
-      gap: 0.8rem;
-      margin-top: 0.3rem;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.84rem;
-      padding: 10px 22px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-
-    .btn-solid {
-      background: var(--btn-solid-bg);
-      color: var(--btn-solid-text);
-      border: 1px solid var(--btn-solid-bg);
-    }
-
-    .btn-solid:hover {
-      background: var(--btn-solid-hover);
-      border-color: var(--btn-solid-hover);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .btn-outline:hover {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
-
-    /* Past, Present, Future Timeline Cards Maintained Below */
     .home-timeline-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -459,7 +389,6 @@
       line-height: 1.4;
     }
 
-    /* Dedicated Story View */
     .stage-fullscreen-screen {
       background: var(--detail-bg);
       border: 1px solid var(--border);
@@ -596,7 +525,6 @@
       line-height: 1.45;
     }
 
-    /* Standard Cards Layout */
     .section-title {
       font-size: 1.8rem;
       font-weight: 800;
@@ -638,7 +566,6 @@
       line-height: 1.5;
     }
 
-    /* Contact View */
     .contact-container {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -697,7 +624,6 @@
       height: 75px;
     }
 
-    /* Footer */
     footer {
       height: 40px;
       border-top: 1px solid var(--border);
@@ -747,6 +673,7 @@
     <nav>
       <button class="active" onclick="switchView('home', this)">HOME</button>
       <button onclick="switchView('about', this)">ABOUT</button>
+      <button onclick="switchView('family', this)">FAMILY</button>
       <button onclick="switchView('education', this)">EDUCATION</button>
       <button onclick="switchView('skills', this)">SKILLS</button>
       <button onclick="switchView('projects', this)">PROJECTS</button>
@@ -764,20 +691,19 @@
   <!-- Main Viewport -->
   <main>
 
-    <!-- 0. HOME VIEW (Slightly Bigger, Centered, Photo on Left, Content on Right, PPF Below) -->
+    <!-- 0. HOME VIEW -->
     <div id="view-home" class="view-panel active-panel">
       <div class="home-wrapper">
 
         <!-- Top Hero Row -->
         <div class="hero-layout">
 
-          <!-- Left Photo Column -->
+          <!-- Left Photo Column (Status Badge Removed) -->
           <div class="photo-column">
             <div class="photo-outer-border">
               <div class="photo-inner-canvas">
                 <img id="userPhoto" src="profile.jpg.jpg" alt="Steven Gennesie B. Laña" />
               </div>
-              <div class="status-badge">&gt; status: College Student</div>
             </div>
 
             <!-- Track & Block Badges -->
@@ -795,13 +721,11 @@
 
           <!-- Right Content Details -->
           <div class="hero-content">
-            <div class="mono-tag">// HELLO, WORLD</div>
+            <div class="mono-tag">// WELCOME TO MY PORTFOLIO</div>
             <h1 class="hero-title">Steven Gennesie<br>B. Laña</h1>
             <div class="hero-role">Bachelor of Science in Information Technology</div>
-            <p class="hero-desc">
-              Passionate about technology, programming, and building a safer digital world. Currently focused on defensive security, networking, and clean software architecture.
-            </p>
 
+            <!-- Badges Row: GitHub, Facebook, and Contact Me -->
             <div class="social-row">
               <a href="https://github.com/stevengennesielana-svg" target="_blank" class="social-badge">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -815,17 +739,19 @@
                 </svg>
                 Facebook
               </a>
-            </div>
-
-            <div class="cta-row">
-              <button class="btn btn-solid" onclick="switchView('projects')">Projects &rarr;</button>
-              <button class="btn btn-outline" onclick="switchView('contact')">Contact Me</button>
+              <button class="social-badge" onclick="switchView('contact')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                Contact Me
+              </button>
             </div>
           </div>
 
         </div>
 
-        <!-- PPF (Past, Present, Future) Timeline Cards Below -->
+        <!-- PPF Timeline Cards Below -->
         <div class="home-timeline-row">
           <div class="home-timeline-card" onclick="openStageDetail('past')">
             <span class="badge-pill">Past</span>
@@ -897,7 +823,7 @@
           <h3>College Student</h3>
           <span class="meta">18 Years Old</span>
           <p>
-            Driven by curiosity, discipline, and a strong ambition to succeed. Focused on deep-diving into computing, systems defense, and problem solving.
+            Passionate about technology, programming, and building a safer digital world. Currently focused on defensive security, networking, and clean software architecture. Driven by curiosity, discipline, and a strong ambition to succeed.
           </p>
         </div>
         <div class="card">
@@ -917,9 +843,31 @@
       </div>
     </div>
 
-    <!-- 2. EDUCATION VIEW -->
+    <!-- 2. FAMILY VIEW -->
+    <div id="view-family" class="view-panel">
+      <div class="mono-tag">// 02. FOUNDATION</div>
+      <h2 class="section-title">Family & Roots</h2>
+      <div class="grid-cards">
+        <div class="card">
+          <h3>Family Support & Values</h3>
+          <span class="meta">Core Inspiration</span>
+          <p>
+            The continuous pillar of encouragement behind my academic journey, inspiring my dedication, moral compass, and pursuit of excellence.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Work Ethic & Principles</h3>
+          <span class="meta">Guiding Anchor</span>
+          <p>
+            Growing up surrounded by discipline and perseverance taught me the importance of resilience, humility, and always striving to do my best.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. EDUCATION VIEW -->
     <div id="view-education" class="view-panel">
-      <div class="mono-tag">// 02. BACKGROUND</div>
+      <div class="mono-tag">// 03. BACKGROUND</div>
       <h2 class="section-title">Education</h2>
       <div class="grid-cards">
         <div class="card">
@@ -946,9 +894,9 @@
       </div>
     </div>
 
-    <!-- 3. SKILLS VIEW -->
+    <!-- 4. SKILLS VIEW -->
     <div id="view-skills" class="view-panel">
-      <div class="mono-tag">// 03. TOOLKIT</div>
+      <div class="mono-tag">// 04. TOOLKIT</div>
       <h2 class="section-title">Skills & Competencies</h2>
       <div class="grid-cards">
         <div class="card">
@@ -972,9 +920,9 @@
       </div>
     </div>
 
-    <!-- 4. PROJECTS VIEW -->
+    <!-- 5. PROJECTS VIEW -->
     <div id="view-projects" class="view-panel">
-      <div class="mono-tag">// 04. WORKS</div>
+      <div class="mono-tag">// 05. WORKS</div>
       <h2 class="section-title">Projects</h2>
       <div class="grid-cards">
         <div class="card">
@@ -994,9 +942,9 @@
       </div>
     </div>
 
-    <!-- 5. CONTACT VIEW -->
+    <!-- 6. CONTACT VIEW -->
     <div id="view-contact" class="view-panel">
-      <div class="mono-tag">// 05. REACH OUT</div>
+      <div class="mono-tag">// 06. REACH OUT</div>
       <h2 class="section-title">Contact</h2>
       <div class="contact-container">
         <div class="contact-info">
@@ -1043,11 +991,10 @@
   </footer>
 
   <script>
-    // Configuration Object: Set images and descriptions here
     const stageData = {
       past: {
         tag: 'Past',
-        image: 'profile.jpg.', // Replace with your past photo filename
+        image: 'profile.jpg.',
         heading: 'Where I started',
         subtext: 'Write about your early years: where you grew up and the moment you got curious about computers.',
         c1T: 'Beginnings', c1D: 'First experiences with technology and tactical gaming.',
@@ -1056,7 +1003,7 @@
       },
       present: {
         tag: 'Present',
-        image: 'profile.jpg.', // Replace with your present photo filename
+        image: 'profile.jpg.',
         heading: 'What I’m doing now',
         subtext: 'Currently training, studying coursework, and building defense labs and web projects every single week.',
         c1T: 'Current Studies', c1D: 'University of the Cordilleras | CITCS 1F Group B.',
@@ -1065,7 +1012,7 @@
       },
       future: {
         tag: 'Future',
-        image: 'profile.jpg.', // Replace with your future photo filename
+        image: 'profile.jpg.',
         heading: 'Where I’m going',
         subtext: 'The professional cybersecurity defender and high-impact software architect I am actively becoming.',
         c1T: 'Target Role', c1D: 'Cybersecurity Specialist & Enterprise Security Engineer.',
@@ -1121,7 +1068,7 @@
       
       root.setAttribute('data-theme', newTheme);
 
-      document.getElementById('themeIcon').innerText = newTheme === 'light' ? '' : '';
+      document.getElementById('themeIcon').innerText = newTheme === 'light' ? '🌙' : '☀️';
       document.getElementById('themeLabel').innerText = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
     }
   </script>
